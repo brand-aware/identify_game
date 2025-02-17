@@ -11,12 +11,9 @@ import core.Properties;
 public class driver {
 
 	public static void main(String[] args) {
-		if(args.length != 2){
-			System.out.println("USEAGE: java driver <current dir> <user dir>");
-			System.exit(0);
-		}
-		Properties properties = new Properties(args[0]);
-		Board game = new Board(properties, args[1]);
+		String currentDir = System.getProperty("user.dir");
+		Properties properties = new Properties(currentDir);
+		Board game = new Board(properties);
 		properties.setBoard(game);
 		Mover mover = new Mover(properties);
 		Thread thread = new Thread(mover);

@@ -18,14 +18,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
-import balogging.BALoggerUtil;
 
 public class CommonBoard extends ConfigBoard{
 	
 	protected Levels levels;
 	protected JFrame boardPage = null;
 	protected Properties properties;
-	protected BALoggerUtil balogger;
 	protected JDesktopPane desktopPane;
 	
 	protected JMenuBar menuBar;
