@@ -27,7 +27,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import balogging.BALoggerUtil;
 import highscores.HighScores;
 import highscores.IBoardOutline;
 import highscores.NameInput;
@@ -39,13 +38,10 @@ public class Board extends CommonBoard implements IBoardOutline{
 	private MenuListener menuListener;
 	
 	private final String PRODUCT_NAME = "identify_game";
-	private String userDir;
 	
-	public Board(Properties prop, String usrDir){
+	public Board(Properties prop){
 		properties = prop;
-		userDir = usrDir;
 		properties.setBoard(this);
-		balogger = new BALoggerUtil(properties.getRootDir(), PRODUCT_NAME, userDir);
 		
 		desktopPane = new JDesktopPane();
 		blocks = new ArrayList<JButton>();
@@ -315,7 +311,6 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 	private final void doStart() {
-		balogger.startTimer();
 		level++;
 		reset();
 		levelDisplay.setText(level + "." + count);
@@ -327,10 +322,6 @@ public class Board extends CommonBoard implements IBoardOutline{
 	}
 	
 	private final void doStop() throws IOException{
-		if(started) {
-			balogger.stopTimer();
-			balogger.logScore("", avg.getText());
-		}
 		level = 0;
 		count = 1;
 		total = 0;
@@ -387,12 +378,10 @@ public class Board extends CommonBoard implements IBoardOutline{
 		timer.setText("--");
 		levelDisplay.setText("--");
 		DecimalFormat df = new DecimalFormat(".##");
-		balogger.stopTimer();
-		balogger.logScore("", "" + average);
 		started = false;
 		
 		try {
-			NameInput nameInput = new NameInput(properties.getRootDir(), properties.getBoard(), PRODUCT_NAME, userDir);
+			NameInput nameInput = new NameInput(properties.getRootDir(), properties.getBoard(), PRODUCT_NAME, "");
 			desktopPane.add(nameInput);
 			desktopPane.moveToFront(nameInput);
 			disable();
