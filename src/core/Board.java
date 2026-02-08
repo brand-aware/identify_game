@@ -545,4 +545,14 @@ public class Board extends CommonBoard implements IBoardOutline{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public int getFrameHeight() {
+		return totalY;
+	}
+
+	@Override
+	public int getFrameWidth() {
+		return totalX;
+	}
 }
