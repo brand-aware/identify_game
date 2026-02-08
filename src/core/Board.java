@@ -38,10 +38,14 @@ public class Board extends CommonBoard implements IBoardOutline{
 	private ButtonHandler handler;
 	private MenuListener menuListener;
 	
-	public Board(Properties prop){
+	private final String PRODUCT_NAME = "identify_game";
+	private String userDir;
+	
+	public Board(Properties prop, String usrDir){
 		properties = prop;
+		userDir = usrDir;
 		properties.setBoard(this);
-		balogger = new BALoggerUtil(properties.getRootDir(), "identify_game");
+		balogger = new BALoggerUtil(properties.getRootDir(), PRODUCT_NAME, userDir);
 		
 		desktopPane = new JDesktopPane();
 		blocks = new ArrayList<JButton>();
@@ -388,7 +392,7 @@ public class Board extends CommonBoard implements IBoardOutline{
 		started = false;
 		
 		try {
-			NameInput nameInput = new NameInput(properties.getRootDir(), properties.getBoard());
+			NameInput nameInput = new NameInput(properties.getRootDir(), properties.getBoard(), PRODUCT_NAME, userDir);
 			desktopPane.add(nameInput);
 			desktopPane.moveToFront(nameInput);
 			disable();
