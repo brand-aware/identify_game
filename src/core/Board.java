@@ -487,8 +487,8 @@ public class Board extends CommonBoard implements IBoardOutline{
 	
 	private final void doAbout() {
 		JOptionPane.showMessageDialog(null, 
-				"identify_game\nproduct of  - ???  -  2017"
-				+ "\n\ncontact\nmike.drummond.802@hotmail.com\n\n", 
+				"identify_game\nproduct of  - brand-aware  -  2017"
+				+ "\n\ncontact\nwontzer@gmail.com\n\n", 
 				"about", 
 				JOptionPane.PLAIN_MESSAGE, 
 				new ImageIcon(properties.getCompany()));
