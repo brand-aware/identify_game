@@ -1,8 +1,8 @@
 package core;
 /**
- * @author mike802
+ * @author wontzer
  * 
- * product of - ???
+ * product of - brand-aware
  * 2017
  */
 import java.io.File;
@@ -17,6 +17,11 @@ public class Properties {
 	private String background;
 	private String company;
 	
+	/**
+	 * Set locations of game images
+	 * 
+	 * @param String root
+	 */
 	public Properties(String root){
 		rootDir = root;
 		imageDir = rootDir + File.separator + "img";

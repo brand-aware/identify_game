@@ -1,6 +1,6 @@
 /**
  * 
- * @author mike802
+ * @author wontzer
  *
  * brand_aware
  * ??? - 2019
@@ -21,9 +21,11 @@ import javax.swing.JTextField;
 
 public class CommonBoard extends ConfigBoard{
 	
+	// static level patterns
 	protected Levels levels;
 	protected JFrame boardPage = null;
 	protected Properties properties;
+	// allows for windowing within application
 	protected JDesktopPane desktopPane;
 	
 	protected JMenuBar menuBar;
@@ -34,8 +36,11 @@ public class CommonBoard extends ConfigBoard{
 	
 	protected JButton startButton, stop;
 	protected JTextField previous, avg, timer, levelDisplay;
+	// all selectable elements of game board are buttons
 	protected ArrayList<JButton> blocks;
+	// elements chosen the "wrong" selections
 	protected ArrayList<String> background;
+	// element chosen for "correct" selection
 	protected String objective;
 	
 	protected long startTimer = 0;

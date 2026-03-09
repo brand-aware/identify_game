@@ -1,12 +1,16 @@
 package core;
 /**
- * @author mike802
+ * @author wontzer
  * 
  * product of - ???
  * 2017
  */
 import java.util.ArrayList;
 
+/**
+ * Fun level patterns.  Meant to be similar enough where
+ * identification could become difficult.
+ */
 public class Levels {
 	
 	private String level0 = "?";

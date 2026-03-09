@@ -1,7 +1,7 @@
 /**
- * @author mike802
+ * @author wontzer
  * 
- * product of - ???
+ * product of - brand-aware
  * 2017
  */
 import core.Board;

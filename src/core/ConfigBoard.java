@@ -1,6 +1,6 @@
 /**
  * 
- * @author mike802
+ * @author wontzer
  *
  * brand_aware
  * ??? - 2019
@@ -53,7 +53,12 @@ public class ConfigBoard {
 	protected int width = 10;
 	protected int height = 10;
 	
+	/**
+	 * All game buttons need static coordinates based on size
+	 * of overall display
+	 */
 	protected void calcTotalX(){
+		// padding left
 		totalX = 15;
 		totalX += LEVEL_DISPLAY_WIDTH + 5;
 		totalX += LEVEL_LABEL_WIDTH + 5;
@@ -63,9 +68,16 @@ public class ConfigBoard {
 		totalX += AVERAGE_LABEL_WIDTH + 5;
 		totalX += TIMER_DISPLAY_WIDTH + 5;
 		totalX += TIMER_LABEL_WIDTH + 5;
+		//padding right
 		totalX += 25;
 	}
 	
+	/**
+	 * Finds size of display area for buttons on the game
+	 * board itself.
+	 * 
+	 * @return int boardX
+	 */
 	protected int calcBoardX(){
 		int boardX = width * BLOCK_BUTTON_WIDTH;
 		boardX += (width - 1) * 5;
@@ -73,13 +85,20 @@ public class ConfigBoard {
 		return boardX;
 	}
 	
+	/**
+	 * Height of the full display, logo, gameplay buttons,
+	 * gameboard, and padding. 
+	 */
 	protected void calcTotalY(){
+		// padding top
 		totalY = 5;
 		totalY += LOGO_HEIGHT;
+		// padding under logo
 		totalY += 10;
 		totalY += START_BUTTON_HEIGHT + 10;
 		totalY += LEVEL_LABEL_HEIGHT + 10;
 		totalY += (BLOCK_BUTTON_HEIGHT * height) + (10 * (height - 1));
+		// bottom padding
 		totalY += 15;
 	}
 
