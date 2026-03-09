@@ -39,6 +39,11 @@ public class Board extends CommonBoard implements IBoardOutline{
 	
 	private final String PRODUCT_NAME = "identify_game";
 	
+	/**
+	 * Initialized main application objects
+	 * 
+	 * @param Properties prop
+	 */
 	public Board(Properties prop){
 		properties = prop;
 		properties.setBoard(this);
@@ -49,6 +54,12 @@ public class Board extends CommonBoard implements IBoardOutline{
 		menuListener = new MenuListener();
 	}
 	
+	/**
+	 * Creates main display for application.  Menu on top,
+	 * logo, start/stop action buttons, gameplay display (starting at
+	 * null), and game board with 10 x 10 buttons, initially disabled
+	 * and set to "?"
+	 */
 	private void createBoard(){
 		boardPage = new JFrame("identify_game");
 		boardPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -227,6 +238,10 @@ public class Board extends CommonBoard implements IBoardOutline{
 		boardPage.setVisible(true);
 	}
 	
+	/**
+	 * Monitors for menu-related actions that need to be taken
+	 * and executes them approperiately.
+	 */
 	private class MenuListener implements ActionListener{
 
 		@Override
@@ -277,6 +292,15 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 	
+	/**
+	 * Action handler for all regular on-screen buttons.  First checks
+	 * if a button is start or stop and does those actions approperiately.
+	 * If it's determined that any other button was pressed, it's assumed
+	 * that button was on the game board and is checked as to whether
+	 * it was the correct answer or not.  A display shows for wrong answers.
+	 * If the game has not been started yet, game board buttons will
+	 * be disabled.
+	 */
 	private class ButtonHandler implements ActionListener{
 
 		@Override
@@ -310,6 +334,12 @@ public class Board extends CommonBoard implements IBoardOutline{
 			}
 		}
 	}
+	
+	/**
+	 * Starts the game.  Toggles start/stop buttons appropriately.
+	 * Starts counting level and resets other counters.  Enabled all
+	 * buttons on game board and loads the first level.
+	 */
 	private final void doStart() {
 		level++;
 		reset();
@@ -321,6 +351,13 @@ public class Board extends CommonBoard implements IBoardOutline{
 		enableBoard();
 	}
 	
+	/**
+	 * Stops game.  Resests level, counters, other attributes.
+	 * Sets all displays to null.  Disables board and changes icons
+	 * back to the starting screen.
+	 * 
+	 * @throws IOException
+	 */
 	private final void doStop() throws IOException{
 		level = 0;
 		count = 1;
@@ -335,6 +372,16 @@ public class Board extends CommonBoard implements IBoardOutline{
 		reset();
 	}
 	
+	/**
+	 * Objective is found, takes the current time from the system
+	 * and calculates how long it took to find the objective.  Game
+	 * display counters are updated appropriately with new data. 
+	 * Congratulations window displayed to user and level is either
+	 * progressed or it is determined that the end has been reached and
+	 * the user can enter a high score (if relevant).
+	 * 
+	 * @throws IOException
+	 */
 	private final void doIsFound() throws IOException{
 		Double elapsedTime = Double.parseDouble(timer.getText());
 		previous.setText(elapsedTime + "");
@@ -370,6 +417,13 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 	
+	/**
+	 * Game has been won and displays are reset before moving to the
+	 * high score screen.
+	 * 
+	 * @param average
+	 * @throws IOException
+	 */
 	private final void levelEndReached(double average) throws IOException{
 		level = 0;
 		count = 1;
@@ -391,18 +445,28 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 	
+	/**
+	 * Disables all buttons on the game board so game is not playable.
+	 */
 	private final void disableBoard(){
 		for(int x = 0; x < blocks.size(); x++){
 			blocks.get(x).setEnabled(false);
 		}
 	}
 	
+	/**
+	 * Enables all buttons on the game board so game is playable.
+	 */
 	private final void enableBoard(){
 		for(int x = 0; x < blocks.size(); x++){
 			blocks.get(x).setEnabled(true);
 		}
 	}
 	
+	/**
+	 * Resets the location of all members of the game board.  Objective
+	 * has new location along with all background characters.
+	 */
 	private final void reset(){
 		int size = width * height;
 		int position = (int) (Math.random() * size);
@@ -417,6 +481,11 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 	
+	/**
+	 * Main animation method for program.  For this application,
+	 * we just update the timer.  Timer counts up from zero, therefore
+	 * it has to be set to zero before starting operation.
+	 */
 	public synchronized void doMove(){
 		if(started){
 			if(startCount > 0){
@@ -432,6 +501,12 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 	
+	/**
+	 * Level switcher for setting the objective and background
+	 * characters for the desired level.  Objective is only displayed
+	 * once and is what the user must find.  Background is everything
+	 * else on the board meant to "hide" the objective.
+	 */
 	private final void setLevel(){
 		if(level == 0){
 			background = new ArrayList<String>();
@@ -461,6 +536,11 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 	
+	/**
+	 * Selects a background character to place on the board at random.
+	 * 
+	 * @return String selected
+	 */
 	private final String selectBackground(){
 		int size = background.size();
 		String selected = "";
@@ -470,6 +550,9 @@ public class Board extends CommonBoard implements IBoardOutline{
 		return selected;
 	}
 	
+	/**
+	 * Creates the board when application is first launched.
+	 */
 	public final void init(){
 		if(boardPage == null){
 			levels = new Levels();
@@ -479,12 +562,18 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 	
+	/**
+	 * Helper method for resetting the board.
+	 */
 	private void restart(){
 		boardPage.setVisible(true);
 		reset();
 		startCount = 0;		
 	}
 	
+	/**
+	 * Display info about application.
+	 */
 	private final void doAbout() {
 		JOptionPane.showMessageDialog(null, 
 				"identify_game\nproduct of  - brand-aware  -  2017"
@@ -494,18 +583,30 @@ public class Board extends CommonBoard implements IBoardOutline{
 				new ImageIcon(properties.getCompany()));
 	}
 
+	/**
+	 * Used when returning from high score screen to re-enable gameplay.
+	 */
 	@Override
 	public void enable() {
 		startButton.setEnabled(true);
 		stop.setEnabled(false);
 	}
 	
+	/**
+	 * Used when entering high score screen to prevent user from
+	 * making background selections.
+	 * 
+	 * @throws IOException
+	 */
 	private void disable() throws IOException{
 		startButton.setEnabled(false);
 		stop.setEnabled(false);
 		doStop();
 	}
 
+	/**
+	 * Displays high score screen.
+	 */
 	@Override
 	public void initHighScores(hsProperties props) {
 		HighScores highScores = new HighScores(this);
@@ -521,6 +622,9 @@ public class Board extends CommonBoard implements IBoardOutline{
 		
 	}
 
+	/**
+	 * Displays high score screen with user gameplay data added.
+	 */
 	@Override
 	public void initHighScores(String name, String rank, int score, hsProperties props) {
 		HighScores highScores = new HighScores(this);
@@ -535,11 +639,17 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}
 	}
 
+	/**
+	 * Used to help center/adjust high score screen display.
+	 */
 	@Override
 	public int getFrameHeight() {
 		return totalY;
 	}
 
+	/**
+	 * Used to help center/adjust high score screen display.
+	 */
 	@Override
 	public int getFrameWidth() {
 		return totalX;
