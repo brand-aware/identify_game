@@ -64,8 +64,7 @@ public class Board extends CommonBoard implements IBoardOutline{
 		boardPage = new JFrame("identify_game");
 		boardPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		boardPage.setLocation(200, 100);
-		String imageDir = properties.getImageDir();
-		Image logo = Toolkit.getDefaultToolkit().getImage(imageDir + File.separator + "company.png");
+		Image logo = Toolkit.getDefaultToolkit().getImage(properties.getCompany());
 		boardPage.setIconImage(logo);
 		boardPage.setResizable(false);
 		

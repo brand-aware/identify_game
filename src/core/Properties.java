@@ -6,16 +6,17 @@ package core;
  * 2017
  */
 import java.io.File;
+import java.net.URL;
 
 public class Properties {
 	
-	private String logo;
+	private URL logo;
 	private String imageDir;
 	private String highScores;
 	private Board board;
 	private String rootDir;
-	private String background;
-	private String company;
+	private URL background;
+	private URL company;
 	
 	/**
 	 * Set locations of game images
@@ -25,22 +26,25 @@ public class Properties {
 	public Properties(String root){
 		rootDir = root;
 		imageDir = rootDir + File.separator + "img";
-		logo = imageDir + File.separator + "logo.png";
+		//logo = imageDir + File.separator + "logo.png";
+		logo = getClass().getResource("/img/logo.png");
 		highScores = rootDir + File.separator + "bin" + File.separator + "highScores.txt";
-		background = imageDir + File.separator + "background.png";
-		company = imageDir + File.separator + "company.png";
+		//background = imageDir + File.separator + "background.png";
+		background = getClass().getResource("/img/background.png");
+		//company = imageDir + File.separator + "company.png";
+		company = getClass().getResource("/img/company.png");
 	}
 	
 	public String getRootDir(){
 		return rootDir;
 	}
-	public String getLogoPath(){
+	public URL getLogoPath(){
 		return logo;
 	}
-	public String getBackground(){
+	public URL getBackground(){
 		return background;
 	}
-	public String getCompany(){
+	public URL getCompany(){
 		return company;
 	}
 	public String getHighScorePath(){
