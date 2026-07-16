@@ -26,12 +26,8 @@ public class Properties {
 	public Properties(String root){
 		rootDir = root;
 		imageDir = rootDir + File.separator + "img";
-		//logo = imageDir + File.separator + "logo.png";
 		logo = getClass().getResource("/img/logo.png");
-		highScores = rootDir + File.separator + "bin" + File.separator + "highScores.txt";
-		//background = imageDir + File.separator + "background.png";
 		background = getClass().getResource("/img/background.png");
-		//company = imageDir + File.separator + "company.png";
 		company = getClass().getResource("/img/company.png");
 	}
 	
