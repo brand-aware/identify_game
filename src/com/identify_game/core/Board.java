@@ -1,4 +1,4 @@
-package core;
+package com.identify_game.core;
 /**
  * @author wontzer
  * 
@@ -53,6 +53,16 @@ public class Board extends CommonBoard implements IBoardOutline{
 		menuListener = new MenuListener();
 	}
 	
+	public Board(Properties prop, JFrame frame){
+		properties = prop;
+		properties.setBoard(this);
+		
+		desktopPane = new JDesktopPane();
+		blocks = new ArrayList<JButton>();
+		handler = new ButtonHandler();
+		menuListener = new MenuListener();
+	}
+	
 	/**
 	 * Creates main display for application.  Menu on top,
 	 * logo, start/stop action buttons, gameplay display (starting at
@@ -60,8 +70,10 @@ public class Board extends CommonBoard implements IBoardOutline{
 	 * and set to "?"
 	 */
 	private void createBoard(){
-		boardPage = new JFrame("identify_game");
-		boardPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		if(boardPage == null) {
+			boardPage = new JFrame("identify_game");
+			boardPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
 		boardPage.setLocation(200, 100);
 		Image logo = Toolkit.getDefaultToolkit().getImage(properties.getCompany());
 		boardPage.setIconImage(logo);
@@ -107,10 +119,10 @@ public class Board extends CommonBoard implements IBoardOutline{
 		calcTotalX();
 		calcTotalY();
 		
-		boardPage.setPreferredSize(new Dimension(totalX, totalY));
+		boardPage.setPreferredSize(new Dimension(totalX, totalY + 20));
 		JLabel backgroundImage = new JLabel();
 		backgroundImage.setIcon(new ImageIcon(properties.getBackground()));
-		backgroundImage.setBounds(0, 0, totalX, totalY);
+		backgroundImage.setBounds(0, 0, totalX, totalY + 20);
 		
 		currentX = (totalX / 2) - (LOGO_WIDTH / 2) - 15;
 		ImageIcon title = new ImageIcon(properties.getLogoPath());
@@ -231,7 +243,9 @@ public class Board extends CommonBoard implements IBoardOutline{
 			currentY += BLOCK_BUTTON_HEIGHT + 5;
 		}
 		
-		boardPage.add(desktopPane);
+		boardPage.setContentPane(desktopPane);
+		boardPage.revalidate();
+		boardPage.repaint();
 		boardPage.pack();
 		boardPage.setVisible(true);
 	}
@@ -558,6 +572,14 @@ public class Board extends CommonBoard implements IBoardOutline{
 		}else{
 			restart();
 		}
+	}
+	
+	public final void init(JFrame board){
+		boardPage = board;
+		boardPage.removeAll();
+		boardPage.setTitle("identify_game");
+		levels = new Levels();
+		createBoard();
 	}
 	
 	/**

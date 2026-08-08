@@ -6,7 +6,7 @@
  * ??? - 2019
  * 
  */
-package core;
+package com.identify_game.core;
 
 public class ConfigBoard {
 	

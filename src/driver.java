@@ -4,9 +4,9 @@
  * product of - brand-aware
  * 2017
  */
-import core.Board;
-import core.Mover;
-import core.Properties;
+import com.identify_game.core.Board;
+import com.identify_game.core.Mover;
+import com.identify_game.core.Properties;
 
 public class driver {
 

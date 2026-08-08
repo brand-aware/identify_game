@@ -1,4 +1,4 @@
-package core;
+package com.identify_game.core;
 /**
  * @author wontzer
  * 

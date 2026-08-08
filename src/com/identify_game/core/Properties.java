@@ -1,4 +1,4 @@
-package core;
+package com.identify_game.core;
 /**
  * @author wontzer
  * 
@@ -26,9 +26,9 @@ public class Properties {
 	public Properties(String root){
 		rootDir = root;
 		imageDir = rootDir + File.separator + "img";
-		logo = getClass().getResource("/img/logo.png");
-		background = getClass().getResource("/img/background.png");
-		company = getClass().getResource("/img/company.png");
+		logo = getClass().getResource("/com/identify_game/img/logo.png");
+		background = getClass().getResource("/com/identify_game/img/background.png");
+		company = getClass().getResource("/com/identify_game/img/company.png");
 	}
 	
 	public String getRootDir(){
