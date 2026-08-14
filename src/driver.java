@@ -11,8 +11,7 @@ import com.identify_game.core.Properties;
 public class driver {
 
 	public static void main(String[] args) {
-		String currentDir = System.getProperty("user.dir");
-		Properties properties = new Properties(currentDir);
+		Properties properties = new Properties();
 		Board game = new Board(properties);
 		properties.setBoard(game);
 		Mover mover = new Mover(properties);

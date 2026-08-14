@@ -12,9 +12,7 @@ public class Properties {
 	
 	private URL logo;
 	private String imageDir;
-	private String highScores;
 	private Board board;
-	private String rootDir;
 	private URL background;
 	private URL company;
 	
@@ -23,17 +21,15 @@ public class Properties {
 	 * 
 	 * @param String root
 	 */
-	public Properties(String root){
-		rootDir = root;
-		imageDir = rootDir + File.separator + "img";
-		logo = getClass().getResource("/com/identify_game/img/logo.png");
-		background = getClass().getResource("/com/identify_game/img/background.png");
-		company = getClass().getResource("/com/identify_game/img/company.png");
+	public Properties(){
+		imageDir = "/com/identify_game/img/";
+		logo = getClass().getResource(imageDir + "logo.png");
+		background = getClass().getResource(imageDir + "background.png");
+		String companyPath = imageDir + "company.png";
+		System.out.println(companyPath);
+		company = getClass().getResource(companyPath);
 	}
 	
-	public String getRootDir(){
-		return rootDir;
-	}
 	public URL getLogoPath(){
 		return logo;
 	}
@@ -42,9 +38,6 @@ public class Properties {
 	}
 	public URL getCompany(){
 		return company;
-	}
-	public String getHighScorePath(){
-		return highScores;
 	}
 	public String getImageDir(){
 		return imageDir;

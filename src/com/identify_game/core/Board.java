@@ -447,7 +447,7 @@ public class Board extends CommonBoard implements IBoardOutline{
 		started = false;
 		
 		try {
-			NameInput nameInput = new NameInput(properties.getRootDir(), properties.getBoard(), PRODUCT_NAME, "");
+			NameInput nameInput = new NameInput(System.getProperty("user.dir"), properties.getBoard(), PRODUCT_NAME, "");
 			desktopPane.add(nameInput);
 			desktopPane.moveToFront(nameInput);
 			disable();
